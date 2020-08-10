@@ -1,16 +1,16 @@
-'use strict'
-const path = require('path')
+"use strict";
+const path = require("path");
 
 
 function resolve(dir) {
-  return path.join(__dirname, dir)
+  return path.join(__dirname, dir);
 }
 
 //const name = 'test' // page title
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
 // For example, Mac: sudo npm run
-const port = 9528 // dev port
+const port = 8090; // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -22,10 +22,10 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: '/',
-  outputDir: 'dist',
-  assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  publicPath: "/",
+  outputDir: "dist",
+  assetsDir: "static",
+  lintOnSave: process.env.NODE_ENV === "development",
   productionSourceMap: false,
   devServer: {
     port: port,
@@ -43,11 +43,11 @@ module.exports = {
     // name: name,
     resolve: {
       alias: {
-        '@': resolve('src')
+        "@": resolve("src")
       }
     },
     output: {
-      libraryExport: 'default'
+      libraryExport: "default"
     }
     // externals: {
     //   'vue': 'Vue',
@@ -55,8 +55,8 @@ module.exports = {
     // },
   },
   chainWebpack(config) {
-    config.plugins.delete('preload') // TODO: need test
-    config.plugins.delete('prefetch') // TODO: need test
+    config.plugins.delete("preload"); // TODO: need test
+    config.plugins.delete("prefetch"); // TODO: need test
     // config
     //   // 插件名 
     //   .plugin('extract-css')
@@ -68,36 +68,36 @@ module.exports = {
     //   })
     // set svg-sprite-loader
     config.module
-      .rule('svg')
-      .exclude.add(resolve('src/icons'))
-      .end()
+      .rule("svg")
+      .exclude.add(resolve("src/icons"))
+      .end();
     config.module
-      .rule('icons')
+      .rule("icons")
       .test(/\.svg$/)
-      .include.add(resolve('src/icons'))
+      .include.add(resolve("src/icons"))
       .end()
-      .use('svg-sprite-loader')
-      .loader('svg-sprite-loader')
+      .use("svg-sprite-loader")
+      .loader("svg-sprite-loader")
       .options({
-        symbolId: 'icon-[name]'
+        symbolId: "icon-[name]"
       })
-      .end()
+      .end();
     // set preserveWhitespace
     config.module
-      .rule('vue')
-      .use('vue-loader')
-      .loader('vue-loader')
+      .rule("vue")
+      .use("vue-loader")
+      .loader("vue-loader")
       .tap(options => {
-        options.compilerOptions.preserveWhitespace = true
-        return options
+        options.compilerOptions.preserveWhitespace = true;
+        return options;
       })
-      .end()
+      .end();
 
     config
       // https://webpack.js.org/configuration/devtool/#development
-      .when(process.env.NODE_ENV === 'development',
-        config => config.devtool('cheap-source-map')
-      )
+      .when(process.env.NODE_ENV === "development",
+        config => config.devtool("cheap-source-map")
+      );
 
     // config
     //   .when(process.env.NODE_ENV !== 'development',
@@ -138,4 +138,4 @@ module.exports = {
     //     }
     //   )
   }
-}
+};
